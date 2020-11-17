@@ -1,4 +1,9 @@
+<?php
+    session_start();
+    include('config\dbconn.php');
+?>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -59,10 +64,10 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li class="active"><a href="aboutus.html">About</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="team.html">Team</a></li>
+                    <li><a href="home.php">Home</a></li>
+                    <li class="active"><a href="aboutus.php">About</a></li>
+                    <li><a href="contact.php">Contact Us</a></li>
+                    <li><a href="team.php">Team</a></li>
                     <li class="drop-down"><a href="">Categories</a>
                         <ul>
                             <li>
@@ -138,7 +143,24 @@
                         <h4>Join Our Newsletter</h4>
                         <p>Get monthly details about new Offers, Schemes and Products prior to everyone. Join the committee now.</p>
                         <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                            <input type="email" name="email" placeholder="Enter your email here">
+                            <input type="submit" name="submit" value="Subscribe">
+                            
+                            <?php
+                            include('config\dbconn.php');
+                            if(isset($_POST['submit']))
+                                {   
+                                    $email=$_POST['email'];
+                                    if(empty($email)) {
+                                        echo "<font color='red'>Email is empty!</font><br/>";
+                                    }
+                                    else {
+                                        $query = "INSERT INTO newsletter_email (email) VALUES ('$email')";
+                                        $result = mysqli_query($dbconn,$query);
+
+                                    }
+                                }
+                            ?>
                         </form>
                     </div>
                 </div>

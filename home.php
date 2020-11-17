@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    include('config\dbconn.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +66,7 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li class="active"><a href="home.html">Home</a></li>
-                    <li><a href="aboutus.html">About</a></li>
+                    <li><a href="aboutus.php">About</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="team.html">Team</a></li>
                     <li class="drop-down"><a href="">Categories</a>
@@ -83,7 +88,9 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> 
+                    <li><a href="user_signup.html">About</a></li>
+                   
                 </ul>
             </nav>
             <!-- .nav-menu -->
