@@ -1,3 +1,18 @@
+<?php
+if(isset($_COOKIE['username'])):{
+	$name=$_COOKIE['username'];
+    include('config\dbconn.php');
+	$data=($dbconn)?(mysqli_query($dbconn,"Select firstname from users where email='$name'")):"";
+    $data1=($dbconn)?(mysqli_query($dbconn,"Select lastname from users where email='$name'")):"";
+    $firstname=mysqli_fetch_assoc($data)['firstname'];
+    $lastname=mysqli_fetch_assoc($data1)['lastname'];
+}
+else:{
+	echo "<script>location.href='user_signup.php'</script>";
+}
+endif
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -47,93 +62,90 @@
             </div>
         </div>
 
-        <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top">
-            <div class="container d-flex align-items-center">
+       
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
 
-                <!-- <h1 class="logo mr-auto"><a href="index.html">Grow<span>More</span></a></h1> -->
-                <h1 class="logo mr-auto"><a href="home.html">Grow<span>More</span></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
+            <!-- <h1 class="logo mr-auto"><a href="index.php">Grow<span>More</span></a></h1> -->
+            <h1 class="logo mr-auto"><a href="home.php">Grow<span>More</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.php" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
 
-                <nav class="nav-menu d-none d-lg-block">
-                    <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="aboutus.html">About</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li class="drop-down active"><a href="#">Categories</a>
-                            <ul>
-                                <li><a href="seeds.html">Seeds</a></li>
-                                <li><a href="pottedPlants.html">Potted plants</a></li>
-                                <li><a href="pesticide.html">Pesticides</a></li>
-                                <li class="active"><a href="fertilizer.html">Fertilizers</a></li>
-                                <li class="drop-down"><a href="#">Irrigation</a>
-                                    <ul>
-                                        <li><a href="#">Drips</a></li>
-                                        <li><a href="#">Fitting and accessories</a></li>
-                                        <li><a href="#">Pipes and tubes</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li> 
-                        <li><a href="user_signup.html">About</a></li>
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="home.php">Home</a></li>
+                    <li><a href="aboutus.php">About</a></li>
+                    <li><a href="contact.php">Contact Us</a></li>
+                    <li><a href="team.php">Team</a></li>
+                    <li class="drop-down"><a href="#">Categories</a>
+                        <ul>
+                            <li><a href="seeds.php">Seeds</a></li>
+                            <li><a href="pottedPlants.php">Potted plants</a></li>
+                            <li><a href="pesticide.php">Pesticides</a></li>
+                            <li><a href="fertilizer.php">Fertilizers</a></li>
+                            <li class="drop-down"><a href="irrigation.php">Irrigation</a>
+                                <ul>
+                                    <li><a href="irrigation.php">Drips</a></li>
+                                    <li><a href="irrigation.php">Fitting and accessories</a></li>
+                                    <li><a href="irrigation.php">Pipes and tubes</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li> 
+
                     
-                    </ul>
-                </nav>
-                <!-- .nav-menu -->
+                    <li class="drop-down"><a href="#">
+                    <?php
+                        echo $firstname.' '.$lastname; 
+                    ?>
+                    </a>
+                    <ul>
+                            <li><a href="myaccount.php">My Account</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                </li>
+                
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
 
-            </div>
-        </header>
-        <!-- End Header -->
+        </div>
+    </header>
+    <!-- End Header -->
 
         <main>
             <section class="card-container">
                 <div class="card-row">
-                    <div class="card-column">
-                        <div class="cardCtg">
-                            <!-- <h3>Card 1</h3> -->
-                            <img src="assets\img\fertilizers\Basfoliar water soluble.jpg" class="img-responsive card-image" width="200" height="200">
-                            <p class="nameCtg">Basfoliar water soluble</p>    
-                            <!-- <p>Some text</p> -->
-                        </div>
-                    </div>
 
-                    <div class="card-column">
-                        <div class="cardCtg">
-                            <!-- <h3>Card 2</h3> -->
-                            <img src="assets\img\fertilizers\Bloom buddy growth booster.jpg" class="img-responsive card-image" width="200" height="200">
-                            <p class="nameCtg">Bloom buddy organic growth booster</p>
-                            <!-- <p>Some text</p> -->
-                        </div>
-                    </div>
+                <?php
+                    include('config\dbconn.php');
+                    $query = "SELECT * FROM products";
+                    $query_run =mysqli_query($dbconn, $query);
+                    $check_products = mysqli_num_rows($query_run) > 0;
+                    if($check_products) {
+                        while($row = mysqli_fetch_assoc($query_run)) { 
+                            if($row['prod_category'] == 'irrigation') {
+                            ?>
 
-                    <div class="card-column">
-                        <div class="cardCtg">
-                            <!-- <h3>Card 3</h3> -->
-                            <img src="assets\img\fertilizers\Organic soil booster.jpg" class="img-responsive card-image" width="200" height="200">
-                            <p class="nameCtg">Organic soil booster</p>
-                            <!-- <p>Some text</p> -->
-                        </div>
-                    </div>
-
-                    <div class="card-column">
-                        <div class="cardCtg">
-                            <!-- <h3>Card 4</h3> -->
-                            <img src="assets\img\fertilizers\TBL growth.jpg" class="img-responsive card-image" width="200" height="200">
-                            <p class="nameCtg">TBL organic growth</p>
-                            <!-- <p>Some text</p> -->
-                        </div>
-                    </div>
-
-                    <div class="card-column">
-                        <div class="cardCtg">
-                            <!-- <h3>Card 5</h3> -->
-                            <img src="assets\img\fertilizers\Trust basket vermicompost.jpg" class="img-responsive card-image" width="200" height="200">
-                            <p class="nameCtg">Trust basket vermicompost</p>
-                            <!-- <p>Some text</p> -->
-                        </div>
-                    </div>
+                             <div class="card-column">
+                                <div class="cardCtg">
+                                    <!-- <h3>Card 1</h3> -->
+                                    <img src="assets\img\products\<?php echo $row['prod_image'] ?>" class="img-responsive card-image" width="200" height="200">
+                                    <p class="nameCtg"><?php echo $row['prod_name'] ?></p>    
+                                    <!-- <p>Some text</p> -->
+                                </div>
+                            </div>
+                        
+                        <?php
+                            } 
+                        }
+                    }
+                    else {
+                        
+                    }
+                ?>
+                   
                 </div>
             </section>
         </main>
@@ -156,9 +168,9 @@
                         <div class="col-lg-3 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="home.html">Home</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="aboutus.html">About us</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="team.html">Teams</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="home.php">Home</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="aboutus.php">About us</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="team.php">Teams</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
                                 <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
                             </ul>

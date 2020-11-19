@@ -1,3 +1,18 @@
+<?php
+if(isset($_COOKIE['username'])):{
+	$name=$_COOKIE['username'];
+    include('config\dbconn.php');
+	$data=($dbconn)?(mysqli_query($dbconn,"Select firstname from users where email='$name'")):"";
+    $data1=($dbconn)?(mysqli_query($dbconn,"Select lastname from users where email='$name'")):"";
+    $firstname=mysqli_fetch_assoc($data)['firstname'];
+    $lastname=mysqli_fetch_assoc($data1)['lastname'];
+}
+else:{
+	echo "<script>location.href='user_signup.php'</script>";
+}
+endif
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -51,33 +66,41 @@
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
     
-                <h1 class="logo mr-auto"><a href="home.html">Grow<span>More</span></a></h1>
+                <h1 class="logo mr-auto"><a href="home.php">Grow<span>More</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
+                <!-- <a href="index.php" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
     
                 <nav class="nav-menu d-none d-lg-block">
                     <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="aboutus.html">About</a></li>
-                        <li class="active"><a href="contact.html">Contact Us</a></li>
-                        <li><a href="team.html">Team</a></li>
+                        <li><a href="home.php">Home</a></li>
+                        <li><a href="aboutus.php">About</a></li>
+                        <li class="active"><a href="contact.php">Contact Us</a></li>
+                        <li><a href="team.php">Team</a></li>
                         <li class="drop-down"><a href="#">Categories</a>
                             <ul>
-                                <li><a href="seeds.html">Seeds</a></li>
-                                <li><a href="pottedPlants.html">Potted plants</a></li>
-                                <li><a href="pesticide.html">Pesticides</a></li>
-                                <li><a href="fertilizer.html">Fertilizers</a></li>
-                                <li class="drop-down"><a href="#">Irrigation</a>
-                                    <ul>
-                                        <li><a href="#">Drips</a></li>
-                                        <li><a href="#">Fitting and accessories</a></li>
-                                        <li><a href="#">Pipes and tubes</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="seeds.php">Seeds</a></li>
+                                <li><a href="pottedPlants.php">Potted plants</a></li>
+                                <li><a href="pesticide.php">Pesticides</a></li>
+                                <li><a href="fertilizer.php">Fertilizers</a></li>
+                                <li class="drop-down"><a href="irrigation.php">Irrigation</a>
+                                <ul>
+                                    <li><a href="irrigation.php">Drips</a></li>
+                                    <li><a href="irrigation.php">Fitting and accessories</a></li>
+                                    <li><a href="irrigation.php">Pipes and tubes</a></li>
+                                </ul>
+                            </li>
                             </ul>
                         </li> 
-                        <li><a href="user_signup.html">About</a></li>
-                    
+                        <li class="drop-down"><a href="#">
+                    <?php
+                        echo $firstname.' '.$lastname; 
+                    ?>
+                    </a>
+                    <ul>
+                            <li><a href="myaccount.php">My Account</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                </li>
                     </ul>
                 </nav>
                 <!-- .nav-menu -->
@@ -247,62 +270,96 @@
     <!-- End Contact Section -->
         </main>
 
-        <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
+   <!-- ======= Footer ======= -->
+   <footer id="footer">
 
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>GrowMore<span>.</span></h3>
-                        <p>
-                            Unit 1, Rajdeep Complex, <br> Mumbai - 400 001 <br> Maharashtra, India<br><br>
-                            <strong>Phone:</strong> +91 1234567890<br>
-                            <strong>Email:</strong> growmore@growmore.org<br>
-                        </p>
-                    </div>
+<div class="footer-newsletter">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h4>Join Our Newsletter</h4>
+                    <p>Get monthly details about new Offers, Schemes and Products prior to everyone. Join the committee now.</p>
+                    <form action="" method="post">
+                        <input type="email" name="email" placeholder="Enter your email here">
+                        <input type="submit" name="submit" value="Subscribe">
+                        
+                        <?php
+                        include('config\dbconn.php');
+                        if(isset($_POST['submit']))
+                            {   
+                                $email=$_POST['email'];
+                                if(empty($email)) {
+                                    echo "<font color='red'>Email is empty!</font><br/>";
+                                }
+                                else {
+                                    $query = "INSERT INTO newsletter_email (email) VALUES ('$email')";
+                                    $result = mysqli_query($dbconn,$query);
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="home.html">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="aboutus.html">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="team.html">Teams</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Categories</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i>
-                                <a href="#">Seeds</a>
-                            </li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Potted Plants</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Pesticides</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Fertilizers</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Irrigation</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Social Networks</h4>
-                        <p>Follow for more updates!!</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
+                                }
+                            }
+                        ?>
+                    </form>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- End Footer -->
+    </div>
+
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h3>GrowMore<span>.</span></h3>
+                    <p>
+                        Unit 1, Rajdeep Complex, <br> Mumbai - 400 001 <br> Maharashtra, India<br><br>
+                        <strong>Phone:</strong> +91 1234567890<br>
+                        <strong>Email:</strong> growmore@growmore.org<br>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="home.php">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="aboutus.php">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="team.php">Teams</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Categories</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i>
+                            <a href="seeds.php">Seeds</a>
+                        </li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="pottedPlants.php">Potted Plants</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="pesticide.php">Pesticides</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="fertilizer.php">Fertilizers</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="irrigation.php">Irrigation</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Social Networks</h4>
+                    <p>Follow for more updates!!</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
 
     <div id="preloader"></div>
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
