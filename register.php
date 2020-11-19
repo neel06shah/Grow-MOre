@@ -1,6 +1,7 @@
 <?php
-    session_start();
-    include('config\dbconn.php');
+    if(isset($_COOKIE['username'])){
+        echo"<script>location.href='home.php'</script>";        
+    }
 ?>
 
 <html>
@@ -80,7 +81,8 @@
                     
                     if($result){
                         //redirecting to the display page. In our case, it is index.php
-                    header("Location: ../home.php");
+                        setcookie('username',$email,time()+60*60*24*30);
+                        echo"<script>location.href='home.php'</script>";
                     }
                 }
                 else {

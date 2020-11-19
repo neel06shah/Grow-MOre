@@ -26,7 +26,7 @@
             <input class="pass" type="password" align="center" placeholder="Password" name="pass">
             <div align="center">
                 <input type="submit" class="submit" align="center" name="submit" value = "Sign In">
-                <a class="submit" href="register.html" align="center">Register</a>
+                <a class="submit" href="register.php" align="center">Register</a>
             </div>
             <p class="forgot" align="center"><a href="#">Forgot Password?</p>
                 
