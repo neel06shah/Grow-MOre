@@ -1995,12 +1995,13 @@ section {
 
 /* Style the counter cards */
 
-.cardCtg {
+/* .cardCtg {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     text-align: left;
     background-color: #f1f1f1;
-}
+    
+} */
 
 .card-image {
     width: 100%;
@@ -2010,10 +2011,38 @@ section {
 .nameCtg {
     text-align: center;
     padding-top: 10px;
-    text-overflow: ellipsis;
-    /* ends data with ..... */
+    text-overflow: ellipsis;    /* ends data with ..... */
     word-break: keep-all;
     font-weight: 900;
     width: auto;
     height: 50Px;
+}
+
+.cardCtg {
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 0 29px 0 rgba(68, 88, 144, 0.12);
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.cardCtg::before {
+    content: '';
+    position: absolute;
+    background: #cbe0fb;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 100%;
+    transition: all 0.3s;
+    z-index: -1;
+}
+
+.cardCtg:hover::before {
+    background: #518432;
+    top: 0;
+    border-radius: 0px;
 }

@@ -175,7 +175,6 @@ endif
                                     else {
                                         $query = "INSERT INTO newsletter_email (email) VALUES ('$email')";
                                         $result = mysqli_query($dbconn,$query);
-
                                     }
                                 }
                             ?>

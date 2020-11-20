@@ -124,7 +124,7 @@ endif
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                     <div class="member">
                         <div class="member-img">
-                            <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                            <img src="assets\img\team\jay.jpg" class="img-fluid" alt="">
                             <div class="social">
                                 <a href=""><i class="icofont-twitter"></i></a>
                                 <a href=""><i class="icofont-facebook"></i></a>
@@ -134,7 +134,7 @@ endif
                         </div>
                         <div class="member-info">
                             <h4>Jay Shah</h4>
-                            <span>Chief Executive Officer</span>
+                            <!-- <span>Chief Executive Officer</span> -->
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ endif
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                     <div class="member">
                         <div class="member-img">
-                            <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                            <img src="assets\img\team\radha.jpg" class="img-fluid" alt="">
                             <div class="social">
                                 <a href=""><i class="icofont-twitter"></i></a>
                                 <a href=""><i class="icofont-facebook"></i></a>
@@ -152,7 +152,7 @@ endif
                         </div>
                         <div class="member-info">
                             <h4>Radha Sawant</h4>
-                            <span>Product Manager</span>
+                            <!-- <span>Product Manager</span> -->
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@ endif
                 <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                     <div class="member">
                         <div class="member-img">
-                            <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                            <img src="assets\img\team\neel.jpg" class="img-fluid" alt="">
                             <div class="social">
                                 <a href=""><i class="icofont-twitter"></i></a>
                                 <a href=""><i class="icofont-facebook"></i></a>
@@ -170,7 +170,7 @@ endif
                         </div>
                         <div class="member-info">
                             <h4>Neel Shah</h4>
-                            <span>Chief Technical Officer</span>
+                            <!-- <span>Chief Technical Officer</span> -->
                         </div>
                     </div>
                 </div>
