@@ -67,7 +67,7 @@ endif
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
     
-                <h1 class="logo mr-auto"><a href="home.php">Grow<span>More</span></a></h1>
+                <h1 class="logo mr-auto notranslate"><a href="home.php">Grow<span>More</span></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.php" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
     
@@ -92,7 +92,17 @@ endif
                             </li>
                             </ul>
                         </li> 
-                        <li><a href="user_signup.php">About</a></li>
+                        <li class="drop-down"><a href="#">
+                    <?php
+                        echo $firstname.' '.$lastname; 
+                    ?>
+                    </a>
+                    <ul>
+                    <li><a href="myaccount.php">My Account</a></li>
+                            <li><a href="mycart.php">My Cart</a></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                </li>
                     </ul>
                 </nav>
                 <!-- .nav-menu -->
@@ -105,13 +115,14 @@ endif
         <section id="hero1" class="d-flex align-items-center">
             <div class=" container " data-aos="zoom-out " data-aos-delay="100 ">
                 <h1>Find more <span>About our team</spa></h1>
+                <h2 style="color: #555555; margin: 5px 0 30px 0; font-size: 24px; font-weight: 400;">We are a team of enthusiastic and experienced individuals from related and diverse backgrounds. Our team comprises of individuals having multi-years of experience in Information Technology. We have a knack to provide extremely valuable and quality services to our customers.</h2>
         </div>
       </section>
       <!-- End Hero -->
     
     <main id="main">
         <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
+    <section id="team" class="team">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -221,7 +232,7 @@ endif
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>GrowMore<span>.</span></h3>
+                        <h3 class="notranslate">GrowMore<span>.</span></h3>
                         <p>
                             Unit 1, Rajdeep Complex, <br> Mumbai - 400 001 <br> Maharashtra, India<br><br>
                             <strong>Phone:</strong> +91 1234567890<br>
@@ -262,7 +273,15 @@ endif
                             <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                             <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
+                        </div><br><br>
+                        <div id="google_translate_element"></div>
+                        <script type="text/javascript">
+                            function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                            }
+                            </script>
+                        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
                     </div>
 
                 </div>

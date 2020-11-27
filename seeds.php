@@ -68,7 +68,7 @@ endif
         <div class="container d-flex align-items-center">
 
             <!-- <h1 class="logo mr-auto"><a href="index.php">Grow<span>More</span></a></h1> -->
-            <h1 class="logo mr-auto"><a href="home.php">Grow<span>More</span></a></h1>
+            <h1 class="logo mr-auto notranslate"><a href="home.php">Grow<span>More</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.php" class="logo mr-auto"><img src="assets/img/logo.png" alt=""></a>-->
 
@@ -101,7 +101,8 @@ endif
                     ?>
                     </a>
                     <ul>
-                            <li><a href="myaccount.php">My Account</a></li>
+                    <li><a href="myaccount.php">My Account</a></li>
+                            <li><a href="mycart.php">My Cart</a></li>
                             <li><a href="logout.php">Logout</a></li>
                         </ul>
                 </li>
@@ -127,15 +128,22 @@ endif
                         while($row = mysqli_fetch_assoc($query_run)) { 
                             if($row['prod_category'] == 'seeds') {
                             ?>
-
-                             <div class="card-column">
-                                <div class="cardCtg">
-                                    <!-- <h3>Card 1</h3> -->
+                            <a href="productdecs.php?prod_id=<?php echo $row['prod_id'] ?>">
+                                <div class="card-column">
+                                    <div class="cardCtg">
                                     <img src="assets\img\products\<?php echo $row['prod_image'] ?>" class="img-responsive card-image" width="200" height="200">
-                                    <p class="nameCtg"><?php echo $row['prod_name'] ?></p>    
-                                    <!-- <p>Some text</p> -->
+                                    <h4  style="margin-top: 30px;">
+                                        <?php echo $row['prod_name'] ?>
+                                    </h4>
+                                    <p>MRP: &#8377;
+                                        <?php echo $row['prod_amount'] ?> <br>
+                                        Packing:
+                                        <?php echo $row['prod_quantity'] ?> gms.
+                                        </h4>
+                                        <!-- <p>Some text</p> -->
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         
                         <?php
                             } 
@@ -157,7 +165,7 @@ endif
                     <div class="row">
 
                         <div class="col-lg-3 col-md-6 footer-contact">
-                            <h3>GrowMore<span>.</span></h3>
+                            <h3 class="notranslate">GrowMore<span>.</span></h3>
                             <p>
                                 Unit 1, Rajdeep Complex, <br> Mumbai - 400 001 <br> Maharashtra, India<br><br>
                                 <strong>Phone:</strong> +91 1234567890<br>
@@ -198,7 +206,15 @@ endif
                                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                                 <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                            </div>
+                            </div><br><br>
+                        <div id="google_translate_element"></div>
+                        <script type="text/javascript">
+                            function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                            }
+                            </script>
+                        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
                         </div>
 
                     </div>

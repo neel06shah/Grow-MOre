@@ -20,7 +20,7 @@ a {
 }
 
 a:hover {
-    color: #3b8af2;
+    color: #305817;
     text-decoration: none;
 }
 
@@ -480,9 +480,8 @@ h6 {
 
 #hero1 {
     width: 100%;
-    height: 75vh;
-    background: url("../img/slideshow-v1-1.jpg") top left;
-    background-size: cover;
+    height: auto;
+    padding: 50px;
     position: relative;
 }
 
@@ -602,7 +601,7 @@ h6 {
 }
 
 #hero .btn-watch-video:hover i {
-    color: #3b8af2;
+    color: #305817;
 }
 
 @media (min-width: 1024px) {
@@ -1005,7 +1004,7 @@ section {
 }
 
 .services .icon-box .icon i {
-    color: #3b8af2;
+    color: #305817;
     font-size: 28px;
     transition: ease-in-out 0.3s;
 }
@@ -1396,7 +1395,7 @@ section {
 }
 
 .team .member .social a:hover {
-    background: #3b8af2;
+    background: #305817;
 }
 
 .team .member .social i {
@@ -1524,7 +1523,7 @@ section {
 }
 
 .pricing .btn-buy:hover {
-    background: #3b8af2;
+    background: #305817;
 }
 
 .pricing .featured h3 {
@@ -1718,7 +1717,7 @@ section {
 }
 
 .contact .php-email-form button[type="submit"]:hover {
-    background: #3b8af2;
+    background: #305817;
 }
 
 @-webkit-keyframes animate-loading {
@@ -1882,7 +1881,7 @@ section {
 #footer .footer-top .social-links a {
     font-size: 18px;
     display: inline-block;
-    background: #518432;
+    background: #538634;
     color: #fff;
     line-height: 1;
     padding: 8px 0;
@@ -1895,7 +1894,7 @@ section {
 }
 
 #footer .footer-top .social-links a:hover {
-    background: #3b8af2;
+    background: #305817;
     color: #fff;
     text-decoration: none;
 }
@@ -1992,30 +1991,9 @@ section {
     }
 }
 
-
-/* Style the counter cards */
-
-/* .cardCtg {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: left;
-    background-color: #f1f1f1;
-    
-} */
-
 .card-image {
     width: 100%;
     height: 100%;
-}
-
-.nameCtg {
-    text-align: center;
-    padding-top: 10px;
-    text-overflow: ellipsis;    /* ends data with ..... */
-    word-break: keep-all;
-    font-weight: 900;
-    width: auto;
-    height: 50Px;
 }
 
 .cardCtg {
@@ -2029,20 +2007,6 @@ section {
     z-index: 1;
 }
 
-.cardCtg::before {
-    content: '';
-    position: absolute;
-    background: #cbe0fb;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    top: 100%;
-    transition: all 0.3s;
-    z-index: -1;
-}
-
-.cardCtg:hover::before {
-    background: #518432;
-    top: 0;
-    border-radius: 0px;
+.cardCtg:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
