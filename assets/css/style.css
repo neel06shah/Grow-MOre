@@ -1996,6 +1996,11 @@ section {
     height: 100%;
 }
 
+.h4 {
+    width: auto;
+    height: 50px;
+}
+
 .cardCtg {
     padding: 30px;
     position: relative;

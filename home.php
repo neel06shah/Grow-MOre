@@ -232,29 +232,26 @@ if(isset($_COOKIE['username'])):{
                     if($check_products) {
                         while($row = mysqli_fetch_assoc($query_run)) { 
                             ?>
-                        <a href="productdecs.php?prod_id=<?php echo $row['prod_id'] ?>">
-                            <div class="card-column">
-                                <div class="cardCtg">
-                                    <!-- <h3>Card 1</h3> -->
-                                    <img src="assets\img\products\<?php echo $row['prod_image'] ?>" class="img-responsive card-image" width="200" height="200">
-                                    <h4  style="margin-top: 30px;">
-                                        <?php echo $row['prod_name'] ?>
-                                    </h4>
-                                    <p>MRP: &#8377;
-                                        <?php echo $row['prod_amount'] ?> <br>
-                                        Packing:
-                                        <?php echo $row['prod_quantity'] ?> gms.
-                                        </h4>
-                                        <!-- <p>Some text</p> -->
-                                </div>
-                            </div>
-                        </a>
+                                <a href="productdecs.php?prod_id=<?php echo $row['prod_id'] ?>">
+                                    <div class="card-column">
+                                        <div class="cardCtg">
+                                            <!-- <h3>Card 1</h3> -->
+                                            <img src="assets\img\products\<?php echo $row['prod_image'] ?>" class="img-responsive card-image" width="200" height="200">
+                                            <h4  style="margin-top: 30px;">
+                                                <?php echo $row['prod_name'] ?>
+                                            </h4>
+                                            <p>MRP: &#8377;
+                                                <?php echo $row['prod_amount'] ?> <br>
+                                                Packing:
+                                                <?php echo $row['prod_quantity'] ?> gms.
+                                                </h4>
+                                                <!-- <p>Some text</p> -->
+                                        </div>
+                                    </div>
+                                </a>
 
                         <?php
                             } 
-                    }
-                    else {
-                        
                     }
                 ?>
 

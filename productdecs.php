@@ -1,9 +1,9 @@
 <?php
 if(isset($_COOKIE['username'])):{
-	$name=$_COOKIE['username'];
+	$email=$_COOKIE['username'];
     include('config\dbconn.php');
-	$data=($dbconn)?(mysqli_query($dbconn,"Select firstname from users where email='$name'")):"";
-    $data1=($dbconn)?(mysqli_query($dbconn,"Select lastname from users where email='$name'")):"";
+	$data=($dbconn)?(mysqli_query($dbconn,"Select firstname from users where email='$email'")):"";
+    $data1=($dbconn)?(mysqli_query($dbconn,"Select lastname from users where email='$email'")):"";
     $firstname=mysqli_fetch_assoc($data)['firstname'];
     $lastname=mysqli_fetch_assoc($data1)['lastname'];
 }
@@ -38,6 +38,10 @@ endif
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
   </head>
 
   <body>
@@ -124,13 +128,76 @@ endif
           <p><?php echo $description?></p>
         </div>
 
+        <form action="" method="post">
         <!-- Product Pricing -->
         <div class="product-price">
-          <span><?php echo $amount?></span>
-          <a href="#" class="cart-btn">Add to cart</a>
+          <span><?php echo $amount?></span> 
+          <input class="cart-btn" type="submit"  name="submit" value="Add Product">
         </div>
       </div>
+</form>
     </main><br><br>
+
+    
+    <?php
+                    include('config\dbconn.php');
+                    if(isset($_POST['submit'])) 
+                    { 
+                      $sql = "SELECT prod_name FROM '$email'"; 
+                      $res = mysqli_query($dbconn,$sql);
+                      if(empty($res))
+                      {
+                        $sql = "CREATE TABLE `$email` ( `prod_name` TEXT NOT NULL , `prod_id` INT NOT NULL , `prod_amount` DECIMAL(11,2) NOT NULL , `prod_count` INT NOT NULL , `prod_category` TEXT NOT NULL , `prod_quantity` INT NOT NULL , `prod_image` TEXT NOT NULL , PRIMARY KEY (`prod_id`))";
+                        $result = mysqli_query($dbconn,$sql);
+                        if ($result) {
+                          $query = "INSERT INTO `$email` (`prod_name`, `prod_id`, `prod_amount`, `prod_count`, `prod_category`, `prod_quantity`, `prod_image`) 
+                          VALUES ('$name', '$id', '$amount', '1', '$category', '$quantity', '$image')";
+                          $result2 = mysqli_query($dbconn,$query);
+                          if($result2) {
+                              echo "<script>swal({
+                                  title: 'Success',
+                                  text: 'Product added to your cart successfully',
+                                  type: 'success'
+                                });</script>"; 
+                          }
+                          else {
+                              echo "<script>swal({
+                                  title: 'Error - adding2',
+                                  text: 'Error occured. Please check internet connection',
+                                  type: 'error'
+                                });</script>"; 
+                          }
+                        } 
+                        else {
+                          echo "<script>swal({
+                          title: 'Error - table',
+                          text: 'Error occured. Please check internet connection',
+                          type: 'error'
+                        });</script>"; 
+                        }
+                      }
+                      else
+                      {
+                        $query3 = "INSERT INTO `$email` (`prod_name`, `prod_id`, `prod_amount`, `prod_count`, `prod_category`, `prod_quantity`, `prod_image`) 
+                          VALUES ('$name', '$id', '$amount', '1', '$category', '$quantity', '$image')";
+                          $result3 = mysqli_query($dbconn,$query3);
+                          if($result3) {
+                              echo "<script>swal({
+                                  title: 'Success',
+                                  text: 'Product added to your cart successfully',
+                                  type: 'success'
+                                });</script>"; 
+                          }
+                          else {
+                              echo "<script>swal({
+                                  title: 'Error - adding',
+                                  text: 'Error occured. Please check internet connection',
+                                  type: 'error'
+                                });</script>"; 
+                          }
+                      }
+                    }           
+                ?>
 
     <div id="google_translate_element"></div>
                         <script type="text/javascript">
