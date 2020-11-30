@@ -139,7 +139,7 @@ endif
             <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center " data-aos="fade-up " data-aos-delay="100 ">
                 <h1 style="font-family: Arial, Helvetica;">Choice For All</h1> <br>
                 <p class="font-weight-normal">
-                    Our audience (AKA you) is wonderfully unique. And we do everything we can to help you find your fit, offering our Plants from more than 30 different species – and we're committed to providing all plants at lowest size possible – so you can get the perfect
+                    Our products are wonderfully unique. And we do everything we can to help you find your fit, offering our products – and we're committed to providing all our products at lowest cost possible – so you can get the perfect
                     thing for you.
                 </p>
             </div>

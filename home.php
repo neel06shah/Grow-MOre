@@ -20,6 +20,8 @@ if(isset($_COOKIE['username'])):{
         <meta content="" name="description">
         <meta content="" name="keywords">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
         <!-- Favicons -->
         <link href="assets/img/favicon.png" rel="icon">
         <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -38,6 +40,30 @@ if(isset($_COOKIE['username'])):{
 
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
+        <style>
+            
+            .search {
+                    margin: auto;
+                    text-align: center;
+                    font-size: 15px;
+                    width: 60%;
+                }
+                    .search form {
+                    margin-top: 30px;
+                    background: #fff;
+                    padding: 6px 10px;
+                    align-items: center;
+                    position: relative;
+                    border-radius: 4px;
+                    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+                    text-align: left;
+                }
+
+                .search form input[type="text"] {
+                    border: 0;
+                    padding: 4px;
+                }
+                </style>
 
     </head>
 
@@ -167,9 +193,7 @@ if(isset($_COOKIE['username'])):{
 
       </div>
     </section>
-<!-- End Featured Services Section →
 
-    <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
         <div class="container" data-aos="fade-up">
 
@@ -215,47 +239,24 @@ if(isset($_COOKIE['username'])):{
 
         <!-- ======= Services Section ======= -->
         <section id="services" class="services">
-            <div class="card-container" data-aos="fade-up">
                 <div class="section-title">
                     <h2>Products</h2>
                     <h3>Check our <span>Products</span></h3>
                     <p>We have a wide range of products from heavy machinary required for Agricultural activity to small plants helpful for home gardening.</p>
                 </div>
 
-                <div class="card-row">
-
-                    <?php
-                    include('config\dbconn.php');
-                    $query = "SELECT * FROM products";
-                    $query_run =mysqli_query($dbconn, $query);
-                    $check_products = mysqli_num_rows($query_run) > 0;
-                    if($check_products) {
-                        while($row = mysqli_fetch_assoc($query_run)) { 
-                            ?>
-                                <a href="productdecs.php?prod_id=<?php echo $row['prod_id'] ?>">
-                                    <div class="card-column">
-                                        <div class="cardCtg">
-                                            <!-- <h3>Card 1</h3> -->
-                                            <img src="assets\img\products\<?php echo $row['prod_image'] ?>" class="img-responsive card-image" width="200" height="200">
-                                            <h4  style="margin-top: 30px;">
-                                                <?php echo $row['prod_name'] ?>
-                                            </h4>
-                                            <p>MRP: &#8377;
-                                                <?php echo $row['prod_amount'] ?> <br>
-                                                Packing:
-                                                <?php echo $row['prod_quantity'] ?> gms.
-                                                </h4>
-                                                <!-- <p>Some text</p> -->
-                                        </div>
-                                    </div>
-                                </a>
-
-                        <?php
-                            } 
-                    }
-                ?>
-
+                <div class="search">
+                    <form action="" method="post"> 
+                        <input type="text" name="search_text" id="search_text" placeholder="Search products here" class="form-control" />
+                    </form>
                 </div>
+
+                <div class="card-container" data-aos="fade-up" style="padding-top: 0px;">
+            
+
+                <div class="card-row" id="result">
+                </div>
+                
         </section>
         <!-- End Services Section -->
 
@@ -390,3 +391,32 @@ else:{
 }
 endif
 ?>
+
+<script>
+    $(document).ready(function(){
+    load_data();
+    function load_data(query)
+    {
+        $.ajax({
+        url:"fetch.php",
+        method:"POST",
+        data:{query:query},
+        success:function(data)
+        {
+            $('#result').html(data);
+        }
+    });
+    }
+    $('#search_text').keyup(function(){
+        var search = $(this).val();
+        if(search != '')
+        {
+            load_data(search);
+        }
+        else
+        {
+            load_data();
+        }
+        });
+    });
+</script>

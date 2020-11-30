@@ -110,15 +110,7 @@ endif
         </header>
         <!-- End Header -->
 
-        <!-- ======= Hero Section ======= -->
-        <section id="hero1" class="d-flex align-items-center">
-            <div class=" container " data-aos="zoom-out " data-aos-delay="100 ">
-                <h1>Find way to<span> reach us</spa></h1>
-            </div>
-      </section>
-      <!-- End Hero -->
-
-        <main id="main">
+        <main id="main" style = "padding-top: 100px;">
             <!-- ======= Frequently Asked Questions Section ======= -->
     <section id="faq" class="faq">
         <div class="container" data-aos="fade-up">

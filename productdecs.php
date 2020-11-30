@@ -131,7 +131,7 @@ endif
         <form action="" method="post">
         <!-- Product Pricing -->
         <div class="product-price">
-          <span><?php echo $amount?></span> 
+          <span>MRP: &#8377; <?php echo $amount?></span> 
           <input class="cart-btn" type="submit"  name="submit" value="Add Product">
         </div>
       </div>
@@ -143,7 +143,7 @@ endif
                     include('config\dbconn.php');
                     if(isset($_POST['submit'])) 
                     { 
-                      $sql = "SELECT prod_name FROM '$email'"; 
+                      $sql = "SHOW TABLES LIKE '$email'"; 
                       $res = mysqli_query($dbconn,$sql);
                       if(empty($res))
                       {

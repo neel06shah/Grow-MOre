@@ -23,6 +23,9 @@ endif
         <meta content="" name="description">
         <meta content="" name="keywords">
     
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
         <!-- Favicons -->
         <link href="assets/img/favicon.png" rel="icon">
         <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -40,6 +43,10 @@ endif
     
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
     
     </head>
 
@@ -74,7 +81,7 @@ endif
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li><a href="confirmation.php">Confirm Order</a></li>
+                    <li><a href="home.php">Home</a></li>
                 
                 </ul>
             </nav>
@@ -107,51 +114,62 @@ endif
                                 <div class="py-2 text-uppercase">Quantity</div>
                             </th>
                             <th scope="col" class="border-0 bg-light">
+                                <div class="py-2 text-uppercase">Total</div>
+                            </th>
+                            
+                            <th scope="col" class="border-0 bg-light">
                                 <div class="py-2 text-uppercase">Remove</div>
                             </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row" class="border-0">
-                                <div class="p-2">
-                                <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-1_zrifhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                                <div class="ml-3 d-inline-block align-middle">
-                                    <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Timex Unisex Originals</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
-                                </div>
-                                </div>
-                            </th>
-                            <td class="border-0 align-middle"><strong>$79.00</strong></td>
-                            <td class="border-0 align-middle"><strong>3</strong></td>
-                            <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                            </tr>
-                            <tr>
-                            <th scope="row">
-                                <div class="p-2">
-                                <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-3_cexmhn.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                                <div class="ml-3 d-inline-block align-middle">
-                                    <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Lumix camera lense</a></h5><span class="text-muted font-weight-normal font-italic">Category: Electronics</span>
-                                </div>
-                                </div>
-                            </th>
-                            <td class="align-middle"><strong>$79.00</strong></td>
-                            <td class="align-middle"><strong>3</strong></td>
-                            <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">
-                                <div class="p-2">
-                                <img src="https://res.cloudinary.com/mhmd/image/upload/v1556670479/product-2_qxjis2.jpg" alt="" width="70" class="img-fluid rounded shadow-sm">
-                                <div class="ml-3 d-inline-block align-middle">
-                                    <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">Gray Nike running shoe</a></h5><span class="text-muted font-weight-normal font-italic">Category: Fashion</span>
-                                </div>
-                                </div>
-                                <td class="align-middle"><strong>$79.00</strong></td>
-                                <td class="align-middle"><strong>3</strong></td>
-                                <td class="align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
+
+                        <?php
+                            include('config\dbconn.php');
+                            $query = "SELECT * FROM `$name`";
+                            $query_run =mysqli_query($dbconn, $query);
+                            $check_products = mysqli_num_rows($query_run) > 0;
+                            if($check_products) {
+                                $total_amount=0;
+                                $total_product=0;
+                                while($row = mysqli_fetch_assoc($query_run)) {
+                                        $total_product = $row['prod_count'] * $row['prod_amount'];
+                                        $total_amount = $total_amount + $total_product;
+                                    ?>
+                                    <tr>
+                                    <form action="" method="post"> 
+                   
+                                        <th scope="row" class="border-0">
+                                            <div class="p-2">
+                                            <img src="assets\img\products\<?php echo $row['prod_image'] ?>" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">  <?php echo $row['prod_name'] ?></a></h5>
+                                                <span class="text-muted font-weight-normal font-italic d-block">Category:   <?php echo $row['prod_category'] ?> <br>
+                                                Quantity: <?php echo $row['prod_quantity'] ?> 
+                                                </span>
+                                            </div>
+                                            </div>
+                                        </th>
+                                        <td class="border-0 align-middle"><strong><?php echo $row['prod_amount'] ?></strong></td>
+                                        <td class="border-0 align-middle">
+                                            <input type="number" min="1" class="itemQty" value="<?php echo $row['prod_count'] ?>" class="form-control" style="max-width: 70px"/>
+                                        </td>
+                                        <input type="hidden" class="pid" value="<?= $row['prod_id']?>"/>
+                                        <input type="hidden" class="pprice" value="<?= $row['prod_amount']?>"/>
+                                        <td class="border-0 align-middle"><strong><?php echo number_format($total_product,2) ?></strong></td>
+                                        <td class="border-0 align-middle">
+                                            <a href="delete_order_details.php?order_id=<?php echo $row['prod_id'];?>" ><button class="btn btn-danger btn-round" onclick="return confirm('Are you sure you want to delete?')" type="button">Remove</button></a>
+                                        </td>
+                                </form>
+                                    </tr>
+                                
+                                <?php
+                                    } 
+                            }
+                            else {
+                                
+                            }
+                        ?>
                         </tbody>
                         </table>
                     </div>
@@ -179,11 +197,13 @@ endif
                     <div class="p-4">
                         <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
                         <ul class="list-unstyled mb-4">
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
-                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong><?php echo number_format($total_amount,2)?></strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>&#8377; 10.00</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>&#8377; 0.00</strong></li>
                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                            <h5 class="font-weight-bold">$400.00</h5>
+                            <h5 class="font-weight-bold">&#8377; <?php $final=$total_amount+10;
+                             echo number_format($final,2)
+                             ?></h5>
                         </li>
                         </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
                     </div>
@@ -280,3 +300,34 @@ endif
         <script src="assets/js/main.js"></script>
     </body>
 </html>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // Change the item quantity
+    $(".itemQty").on('change', function() {
+      var $el = $(this).closest('tr');
+
+      var pid = $el.find(".pid").val();
+      var pprice = $el.find(".pprice").val();
+      var qty = $el.find(".itemQty").val();
+
+      console.log(pid+" "+pprice+" "+qty+" "+"<?php echo $name?>");
+      location.reload(true);
+      $.ajax({
+        url: "count.php",
+        method: "POST",
+        cache: false,
+        data: {
+          qty: qty,
+          pid: pid,
+          email: "<?php echo $name?>"
+        },
+        success: function(response) {
+          console.log(response);
+        }
+      });
+    });
+  });
+  </script>
