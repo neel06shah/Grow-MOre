@@ -162,15 +162,15 @@ endif
                           }
                           else {
                               echo "<script>swal({
-                                  title: 'Error - adding2',
-                                  text: 'Error occured. Please check internet connection',
+                                  title: 'Error',
+                                  text: 'Product alrady added.',
                                   type: 'error'
                                 });</script>"; 
                           }
                         } 
                         else {
                           echo "<script>swal({
-                          title: 'Error - table',
+                          title: 'Error',
                           text: 'Error occured. Please check internet connection',
                           type: 'error'
                         });</script>"; 
@@ -190,8 +190,8 @@ endif
                           }
                           else {
                               echo "<script>swal({
-                                  title: 'Error - adding',
-                                  text: 'Error occured. Please check internet connection',
+                                  title: 'Error',
+                                  text: 'Product already added',
                                   type: 'error'
                                 });</script>"; 
                           }

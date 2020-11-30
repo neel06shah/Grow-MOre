@@ -29,7 +29,7 @@
             <input class="pass" type="password" align="center" placeholder="Password" name="password">
             <input class="pass" type="password" align="center" placeholder="Re-enter password" name="repassword">
             <div align="center">
-                <input type="submit" name="submit" value="Subscribe">
+                <input type="submit" class="submit" name="submit" value="Sign up">
             </div>
 
     <?php

@@ -205,7 +205,19 @@ endif
                              echo number_format($final,2)
                              ?></h5>
                         </li>
-                        </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+                        <form action="" method="post">
+                        </ul><a href="home.php" name="submit" id="submit" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+                      <?php
+                        if(isset($_POST['submit'])) 
+                        {
+                            echo "<script>swal({
+                                title: 'Order done',
+                                text: 'order placed successfully',
+                                type: 'success'
+                            });</script>";  
+                        }
+                        ?>
+                    </form>
                     </div>
                     </div>
                 </div>
